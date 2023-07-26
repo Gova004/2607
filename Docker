@@ -12,7 +12,7 @@
     - shell: systemctl enable docker
     - shell: docker rm -f ritik
  #   - shell: docker rmi -f govardhanlee/repo01:latest
-    - shell: docker run -p 8080:80 -itd --name ritik quickloss3/myimage:latest
+    - shell: docker run -p 8080:80 -itd --name govardhanlee/repo1:tagname
 
     - shell: docker rm -vf $(docker ps -aq)
     - shell: docker rmi -f $(docker images -aq)
