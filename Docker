@@ -1,0 +1,18 @@
+- name: docker
+  hosts: all
+  tasks:
+    - name: docker installed
+      yum:
+        name: docker
+        state: latest
+    - name: docker service start
+      service:
+        name: docker
+        state: started
+    - shell: systemctl enable docker
+    - shell: docker rm -f ritik
+ #   - shell: docker rmi -f vardhanlee/repo02:latest
+    - shell: docker run -p 8080:80 -itd --name ritik quickloss3/myimage:latest
+
+    - shell: docker rm -vf $(docker ps -aq)
+    - shell: docker rmi -f $(docker images -aq)
