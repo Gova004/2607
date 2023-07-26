@@ -1,18 +1,12 @@
-- name: docker
-  hosts: all
-  tasks:
-    - name: docker installed
-      yum:
-        name: docker
-        state: latest
-    - name: docker service start
-      service:
-        name: docker
-        state: started
-    - shell: systemctl enable docker
-    - shell: docker rm -f ritik
- #   - shell: docker rmi -f govardhanlee/repo01:latest
-    - shell: docker run -p 8080:80 -itd --name govardhanlee/repo1:tagname
+FROM centos:7
 
-    - shell: docker rm -vf $(docker ps -aq)
-    - shell: docker rmi -f $(docker images -aq)
+#install httpd (web server)
+RUN yum -y update
+RUN yum -y install httpd httpd-tools
+
+# home page copy from /home/index.html
+COPY index.html /var/www/html/index.html
+
+EXPOSE 80
+#start web server
+CMD ["/usr/sbin/httpd","-D","FOREGROUND"]
