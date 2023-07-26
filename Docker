@@ -11,7 +11,7 @@
         state: started
     - shell: systemctl enable docker
     - shell: docker rm -f ritik
- #   - shell: docker rmi -f vardhanlee/repo02:latest
+ #   - shell: docker rmi -f govardhanlee/repo01:latest
     - shell: docker run -p 8080:80 -itd --name ritik quickloss3/myimage:latest
 
     - shell: docker rm -vf $(docker ps -aq)
